@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "plugins": [
+      "expo-router"
+    ],
+    "name": "getDressed",
+    "slug": "getDressed",
+    "platforms": ["ios", "android", "web"],
+    "android": {
+      "package": "com.trilion.getdressed",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.trilion.getdressed"
+    },
+    "permissions": [
+      "CAMERA",
+      "MEDIA_LIBRARY",
+      "INTERNET"
+    ]
+  }
+}
