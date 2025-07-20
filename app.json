@@ -26,11 +26,6 @@
       "bundleIdentifier": "com.trilion.getdressed",
       "buildNumber": "1"
     },
-    "permissions": [
-      "CAMERA",
-      "MEDIA_LIBRARY",
-      "INTERNET"
-    ],
     "extra": {
       "router": {},
       "eas": {
