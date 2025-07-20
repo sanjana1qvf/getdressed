@@ -1,0 +1,65 @@
+import { createClient } from '@supabase/supabase-js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { EXPO_PUBLIC_SUPABASE_URL, EXPO_PUBLIC_SUPABASE_ANON_KEY } from '@env';
+
+const supabaseUrl = EXPO_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+
+// Validate configuration
+if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('mock') || supabaseAnonKey.includes('mock')) {
+  console.log('Using mock Supabase configuration for testing');
+  // Don't create a real client with invalid URLs
+  const mockSupabase = {
+    auth: {
+      signInWithPassword: async () => ({ data: null, error: { message: 'Mock auth - use real credentials' } }),
+      signUp: async () => ({ data: null, error: { message: 'Mock auth - use real credentials' } }),
+      signOut: async () => ({ error: null }),
+      getUser: async () => ({ data: { user: null }, error: null }),
+      onAuthStateChange: () => ({ data: { subscription: null } }),
+    },
+    from: () => ({
+      select: () => ({ limit: () => Promise.resolve({ data: null, error: { message: 'Mock database' } }) }),
+    }),
+  };
+  
+  export const supabase = mockSupabase;
+  export const testSupabaseConnection = async () => {
+    console.log('Mock Supabase connection test');
+    return false;
+  };
+  export default mockSupabase;
+} else {
+  console.log('Using real Supabase configuration');
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storage: AsyncStorage,
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: false,
+  },
+  global: {
+    headers: {
+      'X-Client-Info': 'getDressed-app',
+    },
+  },
+});
+
+// Test connection on initialization
+export const testSupabaseConnection = async () => {
+  try {
+    const { data, error } = await supabase.from('outfits').select('count').limit(1);
+    if (error) {
+      console.error('Supabase connection test failed:', error);
+      return false;
+    }
+    console.log('Supabase connection test successful');
+    return true;
+  } catch (error) {
+    console.error('Supabase connection test error:', error);
+    return false;
+  }
+};
+
+export default supabase; 
