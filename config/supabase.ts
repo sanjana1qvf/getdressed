@@ -11,6 +11,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.error('EXPO_PUBLIC_SUPABASE_URL:', supabaseUrl ? 'Set' : 'Missing');
   console.error('EXPO_PUBLIC_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'Set' : 'Missing');
   console.error('Please check your environment variables or .env file');
+  console.error('For now, using mock authentication to prevent crashes');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {

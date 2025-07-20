@@ -7,7 +7,11 @@
     "name": "getDressed",
     "slug": "getDressed",
     "version": "1.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "android": {
       "package": "com.trilion.getdressed",
       "versionCode": 1,
@@ -26,6 +30,12 @@
       "CAMERA",
       "MEDIA_LIBRARY",
       "INTERNET"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c77db07c-8b9e-4839-9101-c0025b559ed7"
+      }
+    }
   }
 }
