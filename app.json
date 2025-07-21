@@ -6,7 +6,7 @@
     ],
     "name": "getDressed",
     "slug": "getDressed",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "platforms": [
       "ios",
       "android",
@@ -14,7 +14,7 @@
     ],
     "android": {
       "package": "com.trilion.getdressed",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -30,7 +30,8 @@
       "router": {},
       "eas": {
         "projectId": "c77db07c-8b9e-4839-9101-c0025b559ed7"
-      }
+      },
+
     }
   }
 }
